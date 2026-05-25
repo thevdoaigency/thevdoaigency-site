@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The VDO Aigency — Post-Production Systems for Enterprise Content</title>
+<meta name="description" content="We build post-production systems that turn completed project libraries into content engines. Real testimony. AI pipeline. No bottlenecks." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0b0b'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='18' fill='%23e8b84b'>V</text></svg>"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0b0b0b;
+  --surface: #141414;
+  --border: #222;
+  --border2: #2e2e2e;
+  --text: #ede9e3;
+  --muted: #7a7570;
+  --subtle: #444;
+  --accent: #e8b84b;
+  --accent-dim: rgba(232,184,75,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide WordPress theme header/footer on this page if possible */
+.vdo-page { width: 100%; min-height: 100vh; }
+
+/* ── NAV ── */
+.vdo-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.vdo-nav.scrolled {
+  background: rgba(11,11,11,0.95);
+  border-color: var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.vdo-logo {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.vdo-nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.vdo-nav-links a {
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.vdo-nav-links a:hover { color: var(--text); }
+
+/* ── HERO ── */
+.vdo-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.vdo-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,184,75,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(232,184,75,0.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.vdo-hero-eyebrow {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  opacity: 1;
+}
+
+.vdo-hero-headline {
+  font-family: Georgia, serif !important;
+  font-size: 72px !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
+  color: #ede9e3 !important;
+  max-width: 900px;
+  opacity: 1;
+}
+
+.vdo-hero-headline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.vdo-hero-sub {
+  margin-top: 32px;
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+  opacity: 1;
+}
+
+.vdo-hero-cta {
+  margin-top: 48px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  opacity: 1;
+}
+
+.vdo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.vdo-btn-primary {
+  background: var(--accent);
+  color: #0b0b0b;
+  border: 1px solid var(--accent);
+  font-weight: 500;
+}
+
+.vdo-btn-primary:hover { background: #f0c55a; border-color: #f0c55a; }
+
+.vdo-btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+}
+
+.vdo-btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+.vdo-scroll-line {
+  position: absolute;
+  bottom: 40px;
+  right: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  opacity: 1;
+}
+
+.vdo-scroll-line::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--subtle);
+}
+
+/* ── SECTIONS ── */
+.vdo-section {
+  padding: 120px 48px;
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.vdo-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vdo-section-label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.vdo-section-label::after {
+  content: '';
+  display: block;
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+.vdo-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.vdo-section-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 42px !important;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.vdo-section-title em { font-style: italic; color: var(--accent); }
+
+.vdo-body {
+  font-size: 16px;
+  color: #a09b95;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.vdo-body strong { color: var(--text); font-weight: 500; }
+
+.vdo-quote {
+  margin: 32px 0;
+  padding: 24px 32px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 0 4px 4px 0;
+}
+
+.vdo-quote p {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.vdo-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+}
+
+/* ── PIPELINE STEPS ── */
+.vdo-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 40px 0;
+}
+
+.vdo-pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.vdo-pipeline-step:last-child { border-bottom: none; }
+
+.vdo-step-num {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.vdo-step-content {}
+
+.vdo-step-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.vdo-step-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── DISTINCTION CALLOUT ── */
+.vdo-callout {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 48px;
+  margin: 48px 0 0;
+}
+
+.vdo-callout-headline {
+  font-family: Georgia, serif;
+  font-size: 28px !important;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.vdo-callout-headline em { font-style: italic; color: var(--accent); }
+
+/* ── CREDENTIALS ── */
+.vdo-creds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+
+.vdo-cred {
+  background: var(--surface);
+  padding: 28px 24px;
+}
+
+.vdo-cred-num {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--accent);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.vdo-cred-label {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── CTA SECTION ── */
+.vdo-cta-section {
+  padding: 120px 48px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.vdo-cta-section.visible { opacity: 1; transform: translateY(0); }
+
+.vdo-cta-headline {
+  font-family: Georgia, serif;
+  font-size: 48px !important;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 20px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vdo-cta-headline em { font-style: italic; color: var(--accent); }
+
+.vdo-cta-sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 40px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vdo-email-link {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(232,184,75,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.15s;
+}
+
+.vdo-email-link:hover { border-color: var(--accent); }
+
+/* ── FOOTER ── */
+.vdo-footer {
+  padding: 32px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vdo-footer-logo {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.vdo-footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.vdo-footer-links a {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--subtle);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.vdo-footer-links a:hover { color: var(--muted); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .vdo-nav { padding: 20px 24px; }
+  .vdo-nav-links { display: none; }
+  .vdo-hero { padding: 0 24px 64px; }
+  .vdo-section { padding: 80px 24px; }
+  .vdo-section-grid { grid-template-columns: 1fr; gap: 48px; }
+  .vdo-creds { grid-template-columns: 1fr; }
+  .vdo-cta-section { padding: 80px 24px; }
+  .vdo-footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+  .vdo-callout { padding: 32px 24px; }
+  .vdo-scroll-line { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="vdo-page">
+
+  <!-- NAV -->
+  <nav class="vdo-nav" id="vdo-nav">
+    <a href="#" class="vdo-logo">The VDO Aigency</a>
+    <ul class="vdo-nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="mailto:brandon@thevdoaigency.com">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="vdo-hero">
+    <div class="vdo-hero-bg"></div>
+    <div class="vdo-hero-eyebrow">Post-production systems — enterprise content</div>
+    <h1 class="vdo-hero-headline" style="font-size:72px;font-family:Georgia, serif;color:#ede9e3;line-height:1.05;font-weight:400;">We build the system that makes content from <em>what already exists.</em></h1>
+    <p class="vdo-hero-sub">We don't wait for the perfect production setup. We embed into your operation and build a pipeline that runs without you managing it.</p>
+    <div class="vdo-hero-cta">
+      <a href="mailto:brandon@thevdoaigency.com" class="vdo-btn vdo-btn-primary">Get in touch</a>
+      <a href="#work" class="vdo-btn vdo-btn-ghost">See the work ↓</a>
+    </div>
+    <div class="vdo-scroll-line">Scroll</div>
+  </section>
+
+  <!-- THE WORK -->
+  <section class="vdo-section" id="work">
+    <div class="vdo-section-label">The work</div>
+    <div class="vdo-section-grid">
+      <div>
+        <h2 class="vdo-section-title" style="font-size:42px;font-family:Georgia, serif;color:#ede9e3;line-height:1.15;font-weight:400;">Ten cities of content.<br><em>One system.</em><br>Still running.</h2>
+      </div>
+      <div>
+        <p class="vdo-body">A performance contractor in Chicago had footage from ten completed municipal projects sitting on hard drives in a cinematographer's closet in Ohio. No pipeline. No system. No content.</p>
+        <p class="vdo-body">We built the intake infrastructure, the media management workflow, and the post-production pipeline from scratch. One interview with a town manager in Indiana became a five-week LinkedIn and Instagram campaign — hero video, four social cuts, no additional shoot days.</p>
+        <div class="vdo-quote">
+          <p>"I think all municipalities should look at this."</p>
+          <cite>— Town Manager, Speedway Indiana</cite>
+        </div>
+        <p class="vdo-body">That's what unlocked. Ten cities. One system.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="vdo-section" id="video" style="padding-top:0;border-top:none;">
+    <div style="max-width:860px;margin:0 auto;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;border:1px solid #222;">
+        <iframe
+          src="https://www.youtube.com/embed/u8FC938_Vuo"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="Leopardo Efficiency — Speedway Indiana Wastewater Energy Recovery">
+        </iframe>
+      </div>
+
+      <!-- Testimonial -->
+      <div style="margin-top:32px;">
+        <div style="padding:28px 32px;border-left:2px solid #e8b84b;background:rgba(232,184,75,0.06);border-radius:0 6px 6px 0;max-width:600px;">
+          <p style="font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.6;color:#ede9e3;margin-bottom:14px;">"We made this stuff, but nobody had seen it. Until now."</p>
+          <span style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#7a7570;">— Curtis Leopardo, CEO, Leopardo Efficiency</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE DISTINCTION -->
+  <section class="vdo-section" id="distinction">
+    <div class="vdo-section-label">The distinction</div>
+    <div class="vdo-section-grid">
+      <div>
+        <h2 class="vdo-section-title" style="font-size:42px;font-family:Georgia, serif;color:#ede9e3;line-height:1.15;font-weight:400;">Real testimony.<br><em>AI pipeline.</em><br>No bottlenecks.</h2>
+      </div>
+      <div>
+        <p class="vdo-body">Enterprise B2B sales run on peer credibility. The footage has to be real. The testimony has to be real. <strong>What we use AI for is the pipeline — not the face on camera.</strong></p>
+        <p class="vdo-body">A $1,500 AI-generated video works for plumbers and dentists. It doesn't close a $2.7 million municipal infrastructure contract. That takes a decision-maker's peer on camera saying it worked.</p>
+        <div class="vdo-callout">
+          <p class="vdo-callout-headline">We're not competing with the cheap video.<br><em>We're above it.</em></p>
+          <p class="vdo-body" style="margin-bottom:0;">We build the system that captures real testimony, scales it across every completed project in your portfolio, and turns it into a content engine that runs without you managing it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="vdo-section" id="how">
+    <div class="vdo-section-label">How it works</div>
+    <div class="vdo-section-grid">
+      <div>
+        <h2 class="vdo-section-title" style="font-size:42px;font-family:Georgia, serif;color:#ede9e3;line-height:1.15;font-weight:400;">The pipeline has<br><em>no bottlenecks.</em></h2>
+        <p class="vdo-body" style="margin-top:24px;">Every completed project becomes a campaign. Every campaign runs on the system. The system runs on retainer.</p>
+      </div>
+      <div>
+        <div class="vdo-pipeline">
+          <div class="vdo-pipeline-step">
+            <div class="vdo-step-num">01</div>
+            <div class="vdo-step-content">
+              <div class="vdo-step-title">Talking head exists</div>
+              <div class="vdo-step-desc">Transcribe → paper cut → edit. We pull the best testimony from hours of interview in hours, not weeks.</div>
+            </div>
+          </div>
+          <div class="vdo-pipeline-step">
+            <div class="vdo-step-num">02</div>
+            <div class="vdo-step-content">
+              <div class="vdo-step-title">No interview</div>
+              <div class="vdo-step-desc">ElevenLabs voiceover generated from the brief. Script written, voiced, and cut — no shoot day required.</div>
+            </div>
+          </div>
+          <div class="vdo-pipeline-step">
+            <div class="vdo-step-num">03</div>
+            <div class="vdo-step-content">
+              <div class="vdo-step-title">Missing footage</div>
+              <div class="vdo-step-desc">AI-generated b-roll fills the gaps. No location. No crew. No waiting on a DP in Ohio.</div>
+            </div>
+          </div>
+          <div class="vdo-pipeline-step">
+            <div class="vdo-step-num">04</div>
+            <div class="vdo-step-content">
+              <div class="vdo-step-title">Campaign cascade</div>
+              <div class="vdo-step-desc">One hero video. Four social cuts. Five weeks of content. Every format, every platform, one system.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKGROUND -->
+  <section class="vdo-section" id="background">
+    <div class="vdo-section-label">The background</div>
+    <div class="vdo-section-grid">
+      <div>
+        <h2 class="vdo-section-title" style="font-size:42px;font-family:Georgia, serif;color:#ede9e3;line-height:1.15;font-weight:400;">The system was proven at scale before we took our <em>first client.</em></h2>
+      </div>
+      <div>
+        <p class="vdo-body">Brandon David Cole spent years as a production partner inside one of the world's largest on-demand production companies — delivering post-production for brands including big tech and big box stores. The workflow, the SOPs, the AI integration — all of it was stress-tested on hundreds of projects before The VDO Aigency existed.</p>
+        <p class="vdo-body">Twenty years of editorial credits across Netflix, Bravo, MTV, and major corporate clients. Scaled media processing operations for enterprise brands across healthcare, fintech, and infrastructure. The VDO Aigency is what happens when that experience gets built into a system anyone can run.</p>
+        <div class="vdo-creds">
+          <div class="vdo-cred">
+            <div class="vdo-cred-num">20+</div>
+            <div class="vdo-cred-label">Years editorial experience</div>
+          </div>
+          <div class="vdo-cred">
+            <div class="vdo-cred-num">5,000+</div>
+            <div class="vdo-cred-label">Files processed at scale</div>
+          </div>
+          <div class="vdo-cred">
+            <div class="vdo-cred-num">10</div>
+            <div class="vdo-cred-label">Cities unlocked, one system</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="vdo-cta-section" id="contact">
+    <h2 class="vdo-cta-headline" style="font-size:48px;font-family:Georgia, serif;color:#ede9e3;line-height:1.1;font-weight:400;">If you have completed work that should be generating pipeline<br><em>and isn't —</em></h2>
+    <p class="vdo-cta-sub">We work on retainer. We don't do one-off projects. That's the conversation.</p>
+    <a href="mailto:brandon@thevdoaigency.com" class="vdo-email-link">brandon@thevdoaigency.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="vdo-footer">
+    <div class="vdo-footer-logo">The VDO Aigency</div>
+    <ul class="vdo-footer-links">
+      <li><a href="https://www.linkedin.com/in/brandondavidcole/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@TheVDOAigency" target="_blank">YouTube</a></li>
+      <li><a href="mailto:brandon@thevdoaigency.com">Email</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('vdo-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Section reveal on scroll
+const sections = document.querySelectorAll('.vdo-section, .vdo-cta-section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
