@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The VDO Aigency — Brand Operations Retainer</title>
+<meta name="description" content="A fractional, senior content and brand operations capability for mid-market companies. Five named productized services on a monthly retainer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #e8b84b;
+    --black: #0b0b0b;
+    --surface: #141414;
+    --cream: #ede9e3;
+    --muted: #7a7570;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --mono: 'Courier New', Courier, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(11, 11, 11, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(232, 184, 75, 0.12);
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .wordmark .italic { font-style: italic; }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid var(--muted);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .nav-cta:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 8.5vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.022em;
+    color: var(--cream);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero h1 .accent { color: var(--gold); }
+
+  .hero .subhead {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--cream);
+    max-width: 700px;
+    margin-bottom: 3rem;
+  }
+
+  .hero .subhead .italic { font-style: italic; }
+
+  .button-line {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 1.05rem 1.9rem;
+    border: 1px solid var(--cream);
+    display: inline-block;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .button-line:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* Block base */
+  section.block {
+    padding: 7rem 0;
+    border-top: 1px solid rgba(232, 184, 75, 0.12);
+  }
+
+  .section-head {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.6vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    color: var(--cream);
+    max-width: 880px;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-lead {
+    max-width: 720px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .section-lead p { margin-bottom: 1.5rem; }
+  .section-lead p:last-child { margin-bottom: 0; }
+
+  /* Services */
+  .services-list { margin-top: 4rem; }
+
+  .service {
+    display: grid;
+    grid-template-columns: 90px 1fr 2fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(122, 117, 112, 0.22);
+    align-items: start;
+  }
+
+  .service:first-child { padding-top: 0; }
+  .service:last-child { border-bottom: none; }
+
+  .service-num {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding-top: 0.6rem;
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+  }
+
+  .service-body {
+    color: var(--cream);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  /* Tiers */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3.5rem;
+    border-top: 1px solid rgba(122, 117, 112, 0.22);
+  }
+
+  .tier {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(122, 117, 112, 0.22);
+  }
+
+  .tier:last-child { border-right: none; }
+
+  .tier-name {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1.6rem;
+  }
+
+  .tier-price {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tier-period {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 2rem;
+  }
+
+  .tier-body {
+    color: var(--cream);
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+
+  .tier-body p {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(122, 117, 112, 0.15);
+  }
+
+  .tier-body p:last-child { border-bottom: none; }
+
+  .implementation {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--gold);
+    max-width: 760px;
+  }
+
+  .implementation .kicker { margin-bottom: 1.5rem; }
+
+  .implementation p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  /* Month flow */
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .week {
+    border-top: 1px solid var(--gold);
+    padding-top: 1.5rem;
+  }
+
+  .week-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+
+  .week-title {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    margin-bottom: 0.9rem;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+
+  .week-body {
+    color: var(--cream);
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  /* Exclusions */
+  .exclusions ul {
+    list-style: none;
+    margin-top: 3rem;
+    max-width: 760px;
+  }
+
+  .exclusions li {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(122, 117, 112, 0.22);
+    font-size: 1.05rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .exclusions li::before {
+    content: '—';
+    color: var(--gold);
+    font-family: var(--mono);
+    flex-shrink: 0;
+  }
+
+  /* Team */
+  .team-body {
+    max-width: 760px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .team-body p { margin-bottom: 1.5rem; }
+  .team-body p:last-child { margin-bottom: 0; }
+
+  /* Final CTA */
+  .final-cta {
+    padding: 8rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(232, 184, 75, 0.12);
+  }
+
+  .final-cta .kicker { justify-content: center; }
+
+  .final-cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    color: var(--cream);
+  }
+
+  .final-cta p {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--cream);
+  }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(232, 184, 75, 0.12);
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-mark {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--cream);
+  }
+
+  .footer-mark .italic { font-style: italic; }
+
+  .footer-year {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Hero staggered load */
+  .hero .kicker { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero h1 { animation: fadeUp 0.9s 0.28s ease both; }
+  .hero .subhead { animation: fadeUp 0.8s 0.55s ease both; }
+  .hero .button-line { animation: fadeUp 0.6s 0.78s ease both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .container { padding: 0 1.5rem; }
+
+    .service {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      padding: 2.5rem 0;
+    }
+
+    .service-num { font-size: 0.75rem; padding-top: 0; }
+    .service-title { font-size: 1.7rem; }
+
+    .tiers { grid-template-columns: 1fr; border-top: none; }
+
+    .tier {
+      border-right: none;
+      border-top: 1px solid rgba(122, 117, 112, 0.22);
+      padding: 2.5rem 0;
+    }
+
+    .month-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .nav-cta { display: none; }
+
+    section.block { padding: 4.5rem 0; }
+
+    .final-cta { padding: 5rem 0; }
+
+    .hero { padding-top: 6rem; }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 1.25rem; }
+    body { font-size: 16px; }
+    .hero h1 { margin-bottom: 1.8rem; }
+    .hero .subhead { font-size: 1.05rem; margin-bottom: 2rem; }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="#top" class="wordmark">VDO <span class="italic">Aigency</span></a>
+      <a href="#audit" class="nav-cta">Brand Audit</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="kicker">Brand Operations Retainer</div>
+      <h1>A brand is a system.<br><span class="accent">We run yours.</span></h1>
+      <p class="subhead">Mid-market companies hire The VDO <span class="italic">Aigency</span> to operate their brand. Five named productized services on a monthly retainer, executed at network-television standards by a senior team.</p>
+      <a href="#audit" class="button-line">Schedule a Brand Audit</a>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">The Problem</div>
+        <h2 class="section-head">Most mid-market brands are stranded.</h2>
+        <div class="section-lead">
+          <p>Big agencies are priced for the Fortune 500. Freelancers cannot carry the load. So content drifts. Visual identity erodes. Voice splinters across channels. Footage gets re-shot because nobody can find what already exists. The brand becomes whatever the last junior staffer published.</p>
+          <p>The retainer fixes the operating layer, not the surface. A senior team runs the system. The brand stops drifting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">The Retainer</div>
+        <h2 class="section-head">A fractional, senior content operations capability.</h2>
+        <p class="section-lead">The Brand Operations Retainer is built around five named, productized services. Each is a discrete capability with its own definition, deliverables, and standard. Together they form a content operating system.</p>
+
+        <div class="services-list">
+          <article class="service">
+            <div class="service-num">01</div>
+            <h3 class="service-title">Story Film</h3>
+            <p class="service-body">The cinematic narrative centerpiece. AI-generated imagery, the founder's actual recorded voice, no likeness rendering. Delivered in every format — 16:9, 9:16, 1:1. One per cadence depending on tier. The marketing flagship every month or quarter.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-num">02</div>
+            <h3 class="service-title">Brand Atlas</h3>
+            <p class="service-body">The canonical living document defining brand voice, color, typography, message architecture, prohibited language, and tone rules. Established in implementation, maintained through the retainer, enforced across every deliverable. The Atlas keeps the brand internally consistent at scale.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-num">03</div>
+            <h3 class="service-title">Channel Cadence</h3>
+            <p class="service-body">Predictable multi-channel content production on a weekly or daily rhythm. LinkedIn, YouTube, Instagram — selected by tier. Each long-form unit is cut into shorts, snippets, and posts. One production cycle generates a week of content. No scrambling, no last-minute drafting.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-num">04</div>
+            <h3 class="service-title">Campaign Architecture</h3>
+            <p class="service-body">Strategic content sprints for the moments that matter. Product launches, funding rounds, executive hires, partnership announcements. We design the multi-asset campaign blueprint and coordinate execution across every channel in advance. The moment lands.</p>
+          </article>
+
+          <article class="service">
+            <div class="service-num">05</div>
+            <h3 class="service-title">Semantic Bridge</h3>
+            <p class="service-body">On-premise AI infrastructure for asset retrieval. The production team natural-language-searches the brand's entire footage and graphics archive. Anything retrieved in seconds. Never re-shoot what already exists. Hardware at cost, software licensed by VDO.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">Three Tiers</div>
+        <h2 class="section-head">Priced on operational depth.</h2>
+        <p class="section-lead" style="color:var(--muted)">Every tier delivers to the same standard. The differences are how much production runs through the system per month and which channels are in scope.</p>
+
+        <div class="tiers">
+          <div class="tier">
+            <div class="tier-name">Foundation</div>
+            <div class="tier-price">$8,500</div>
+            <div class="tier-period">per month / 6-month minimum</div>
+            <div class="tier-body">
+              <p>Brand Atlas established and maintained</p>
+              <p>One Story Film per quarter</p>
+              <p>Channel Cadence on one primary channel</p>
+              <p>One monthly strategic working session</p>
+            </div>
+          </div>
+
+          <div class="tier">
+            <div class="tier-name">Atlas</div>
+            <div class="tier-price">$15,000</div>
+            <div class="tier-period">per month / 6-month minimum</div>
+            <div class="tier-body">
+              <p>Everything in Foundation</p>
+              <p>One Story Film per month</p>
+              <p>Channel Cadence on two channels</p>
+              <p>One Campaign Architecture per quarter</p>
+              <p>Two monthly strategic working sessions</p>
+            </div>
+          </div>
+
+          <div class="tier">
+            <div class="tier-name">Operating System</div>
+            <div class="tier-price">$25,000</div>
+            <div class="tier-period">per month / 12-month minimum</div>
+            <div class="tier-body">
+              <p>Everything in Atlas</p>
+              <p>Quarterly tentpole production</p>
+              <p>Channel Cadence on three channels</p>
+              <p>Monthly Campaign Architecture</p>
+              <p>Semantic Bridge appliance included</p>
+              <p>Weekly strategic working sessions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation">
+          <div class="kicker">Implementation</div>
+          <p>A $15,000 implementation fee precedes the first retainer month. It buys a two-day executive intensive to build the Brand Atlas, the first Story Film delivered within thirty days as proof of capability, a ninety-day content plan locked, and the operations infrastructure that the retainer runs on. The fee is non-recoverable. The work product belongs to the client.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">How a Month Runs</div>
+        <h2 class="section-head">The rhythm is deliberate.</h2>
+        <p class="section-lead">The work happens whether or not anyone on the client side is paying attention that week. The retainer means the client does not chase.</p>
+
+        <div class="month-grid">
+          <div class="week">
+            <div class="week-num">Week 01</div>
+            <div class="week-title">Strategy</div>
+            <div class="week-body">Working session locks the month's content plan. Story Film briefed. Campaign moments identified.</div>
+          </div>
+
+          <div class="week">
+            <div class="week-num">Week 02</div>
+            <div class="week-title">Production</div>
+            <div class="week-body">Story Film moves through the pipeline. Channel Cadence content drafted. Campaign assets spec'd.</div>
+          </div>
+
+          <div class="week">
+            <div class="week-num">Week 03</div>
+            <div class="week-title">Review</div>
+            <div class="week-body">Client approves. Revisions in a single round. Channel Cadence publishes across the week.</div>
+          </div>
+
+          <div class="week">
+            <div class="week-num">Week 04</div>
+            <div class="week-title">Reporting</div>
+            <div class="week-body">What worked. What did not. What next month looks like.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block exclusions">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">Out of Scope</div>
+        <h2 class="section-head">What we do not do.</h2>
+        <p class="section-lead" style="color:var(--muted)">If a project requires what follows, it is scoped separately or referred out.</p>
+
+        <ul>
+          <li>Paid media buying and ad management</li>
+          <li>Public relations, press outreach, and earned media</li>
+          <li>Website design or development</li>
+          <li>Crisis communications</li>
+          <li>Live event production</li>
+          <li>Original on-location videography or photography</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">Who Runs the Work</div>
+        <h2 class="section-head">A senior team. Network-television standards.</h2>
+        <div class="team-body">
+          <p>Brandon David Cole, Executive Producer. Twenty years of network post-production. Credits across Netflix, Bravo, Discovery, MTV. Degrees from NYU Tisch and UCLA Anderson.</p>
+          <p>The team includes senior post-production talent and engineering for AI infrastructure. No juniors. No outsourcing of creative judgement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="audit">
+    <div class="container">
+      <div class="reveal">
+        <div class="kicker">Schedule a Brand Audit</div>
+        <h2>Thirty minutes.<br>No pitch.</h2>
+        <p>We review your current content state, name the highest-leverage problems, and recommend a tier or decline the engagement. Half the conversations do not convert, and should not. The ones that do are mostly self-qualified by the time they happen.</p>
+        <a href="mailto:brandon@thevdoaigency.com?subject=Brand%20Audit" class="button-line">brandon@thevdoaigency.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-mark">VDO <span class="italic">Aigency</span></div>
+      <div class="footer-year">© 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
