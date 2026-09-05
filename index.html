@@ -200,6 +200,34 @@ nav{
   color:var(--muted);font-size:16px;max-width:72ch;
 }
 
+/* ---------- Demo libraries ---------- */
+.demo-libs{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lib{
+  display:flex;flex-direction:column;
+  background:var(--ink-2);border:1px solid var(--line);border-radius:10px;
+  padding:26px 24px;color:var(--text);
+  transition:border-color .15s ease;
+}
+a.lib:hover{border-color:var(--champagne-deep)}
+.lib-badge{
+  align-self:flex-start;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;margin-bottom:16px;
+}
+.lib h3{font-stretch:110%;font-weight:700;font-size:21px}
+.lib-vert{font-size:14px;color:var(--muted);margin-top:2px}
+.lib-query{
+  margin-top:16px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--champagne);
+  background:var(--ink);border:1px solid var(--line);border-radius:6px;
+  padding:10px 13px;
+}
+.lib-result{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.55;flex:1}
+.lib-cta{margin-top:16px;font-size:14px;font-weight:600;color:var(--champagne)}
+.lib:not(a) .lib-cta{color:var(--muted);font-weight:500}
+
 /* ---------- Ladder ---------- */
 .ladder{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .rung{
@@ -243,6 +271,7 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
   .deliver + .deliver{border-left:none;border-top:1px solid var(--line)}
   .diff-grid{grid-template-columns:1fr}
   .ladder{grid-template-columns:1fr}
+  .demo-libs{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -369,6 +398,39 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
           <h3>Your portal goes live in a week</h3>
           <p>You search it yourself, your team searches it, and the audit report shows you what to do with what you found. The three reels arrive alongside it.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Don't imagine it. Search one.</h2>
+    <p class="lede">We built full demo libraries — fictional brands, real indexing — so you can see what your archive becomes. Each one starts with the kind of question a filing system can't answer.</p>
+    <div class="demo-libs">
+      <a class="lib" href="https://youtu.be/8lyWTfuojPQ" target="_blank" rel="noopener">
+        <span class="lib-badge">Demo library</span>
+        <h3>Corniche</h3>
+        <p class="lib-vert">Luxury yacht charter</p>
+        <div class="lib-query">→ "swimming in bioluminescence"</div>
+        <p class="lib-result">2 moments found across 2 speakers — an experience two people described, that no filename ever mentioned.</p>
+        <span class="lib-cta">Watch the search →</span>
+      </a>
+      <div class="lib">
+        <span class="lib-badge">Demo library</span>
+        <h3>Ferrovale Industrial</h3>
+        <p class="lib-vert">Industrial / plant operations</p>
+        <div class="lib-query">→ "CEO talking safety on the floor"</div>
+        <p class="lib-result">Walkthroughs, weld-line b-roll, and a decade of trade-show interviews — indexed by voice and scene, not folder.</p>
+        <span class="lib-cta">Portal preview</span>
+      </div>
+      <div class="lib">
+        <span class="lib-badge">Demo library</span>
+        <h3>Crestbourne Capital</h3>
+        <p class="lib-vert">Financial services</p>
+        <div class="lib-query">→ "managing partner on rate cuts"</div>
+        <p class="lib-result">Every panel, keynote, and LP update one voice ever gave — timecoded moments, ready for compliance review and reels.</p>
+        <span class="lib-cta">Portal preview</span>
       </div>
     </div>
   </div>
