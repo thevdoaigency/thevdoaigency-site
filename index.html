@@ -3,8 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VDO Bridge — Media Intelligence Platform</title>
-<meta name="description" content="Search your footage by what's in it. VDO Bridge turns your video archive into a private, searchable media library — starting with a free Media Audit.">
+<title>VDO Bridge — Search Your Video Archive by Content | Media Intelligence Platform</title>
+<meta name="description" content="Search video footage by what's in it — content, speaker, and moment, not filenames. VDO Bridge turns years of company video into a private, searchable library. Free Media Audit.">
+<link rel="canonical" href="https://thevdoaigency.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thevdoaigency.com/">
+<meta property="og:title" content="VDO Bridge — Search Your Video Archive by Content">
+<meta property="og:description" content="A media intelligence platform that finds the clip nobody tagged. Free Media Audit: your footage in, a searchable library and three finished reels out.">
+<meta property="og:image" content="https://thevdoaigency.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "VDO Bridge",
+      "url": "https://thevdoaigency.com/",
+      "parentOrganization": {"@type": "Organization", "name": "VDO Aigency"},
+      "email": "brandon@thevdoaigency.com",
+      "description": "Media intelligence platform: searchable video archives indexed by content, speaker, and moment."
+    },
+    {
+      "@type": "Service",
+      "name": "Free Media Audit",
+      "provider": {"@type": "Organization", "name": "VDO Bridge"},
+      "description": "A free audit of your video archive: a private searchable portal, an asset audit report, and three cut-ready reels built from footage you already own.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I search video footage by content instead of filenames?",
+          "acceptedAnswer": {"@type": "Answer", "text": "VDO Bridge indexes what's on screen and what's being said in every clip — transcription, scene understanding, and speaker identification. You type a question like a search engine query and get back timecoded moments, even from files with names like C0417.mp4."}
+        },
+        {
+          "@type": "Question",
+          "name": "How do I organize years of company video footage?",
+          "acceptedAnswer": {"@type": "Answer", "text": "You don't organize it — you index it. Share your archive from cloud storage, and VDO Bridge builds a private searchable library in about a week. No manual tagging, no folder taxonomy, no seat licenses."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is VDO Bridge a DAM (digital asset management) tool?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No. A DAM stores what your team tagged; VDO Bridge finds what nobody tagged. It's a media intelligence layer — content search, speaker isolation, and timecode-level results — with cut-ready reels and a production arm behind it. If you already have a DAM, run the free audit against it on the same footage."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can it find everything one person said across all our videos?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Yes — speaker isolation is core to the index. Ask for everything your CEO said about a topic across every interview, panel, and event, and get back timecoded moments by that voice."}
+        },
+        {
+          "@type": "Question",
+          "name": "What does the free Media Audit include?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Three deliverables: a private searchable portal of your footage, an asset audit report showing what you own and what's missing, and three cut-ready reels with voiceover built entirely from footage you already had. Intake is digital only — a shared link, not a shipped drive."}
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -227,6 +286,22 @@ a.lib:hover{border-color:var(--champagne-deep)}
 .lib-result{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.55;flex:1}
 .lib-cta{margin-top:16px;font-size:14px;font-weight:600;color:var(--champagne)}
 .lib:not(a) .lib-cta{color:var(--muted);font-weight:500}
+
+/* ---------- FAQ ---------- */
+.faq{margin-top:44px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  cursor:pointer;list-style:none;
+  padding:20px 34px 20px 0;position:relative;
+  font-size:17.5px;font-weight:600;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:'+';position:absolute;right:4px;top:50%;transform:translateY(-50%);
+  color:var(--champagne);font-weight:400;font-size:22px;
+}
+.faq details[open] summary::after{content:'–'}
+.faq details p{padding:0 0 22px;color:var(--muted);font-size:16px;max-width:68ch}
 
 /* ---------- Ladder ---------- */
 .ladder{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -519,6 +594,34 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
   <div class="wrap">
     <p>Built by a production company. <em>Not a storage vendor backing into marketing.</em></p>
     <p class="note">The big platforms in this space started as file storage and bolted marketing features on top. VDO Bridge comes from the other direction — a working media company that spent years shooting for brands, watched good footage get lost and reshot, and packaged the smartest AI tooling into something a marketing team can actually use. We know footage because we make it. That's also why there's a production arm behind the search bar: when the library shows you what's missing, we're the ones who can go shoot it.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Questions people actually type</h2>
+    <div class="faq">
+      <details>
+        <summary>How do I search video footage by content instead of filenames?</summary>
+        <p>VDO Bridge indexes what's on screen and what's being said in every clip — transcription, scene understanding, and speaker identification. You type a question the way you'd type a search, and get back timecoded moments — even from files named C0417.mp4.</p>
+      </details>
+      <details>
+        <summary>How do I organize years of company video footage?</summary>
+        <p>You don't organize it — you index it. Share your archive from cloud storage and Bridge builds a private searchable library in about a week. No manual tagging, no folder taxonomy, no seat licenses.</p>
+      </details>
+      <details>
+        <summary>Is this a DAM?</summary>
+        <p>No. A DAM stores what your team tagged; Bridge finds what nobody tagged. It's a media intelligence layer — content search, speaker isolation, timecode-level results — with cut-ready reels and a production arm behind it. Already have a DAM? Run the free audit against it on the same footage.</p>
+      </details>
+      <details>
+        <summary>Can it find everything one person said across all our videos?</summary>
+        <p>Yes — speaker isolation is core to the index. Everything your CEO said about a topic, across every interview, panel, and event, back as timecoded moments by that voice.</p>
+      </details>
+      <details>
+        <summary>What does the free Media Audit include?</summary>
+        <p>Three deliverables: a private searchable portal of your footage, an asset audit report showing what you own and what's missing, and three cut-ready reels with voiceover — built entirely from footage you already had. Intake is digital only: a shared link, not a shipped drive.</p>
+      </details>
+    </div>
   </div>
 </section>
 
