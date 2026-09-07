@@ -67,7 +67,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=JetBrains+Mono:wght@400;500&family=Marcellus&family=Jost:wght@300;400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#171C22;          /* graded slate, like a color suite */
@@ -137,61 +137,67 @@ nav{
 .btn-quiet{font-size:16px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:2px}
 .btn-quiet:hover{color:var(--text);border-color:var(--muted)}
 
-/* ---------- The live search demo ---------- */
+/* ---------- The live search demo — styled as the actual Corniche portal ---------- */
 .demo{
   margin-top:64px;
-  background:var(--ink-2);
-  border:1px solid var(--line);
-  border-radius:10px;
+  background:#FAF6EE;
+  border:1px solid #E4DCC9;
+  border-radius:6px;
   overflow:hidden;
+  color:#3E3A32;
 }
 .demo-bar{
-  display:flex;align-items:center;gap:12px;
-  padding:16px 20px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:16px;
+  padding:16px 22px;border-bottom:1px solid #E4DCC9;
 }
-.demo-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.demo-label{
+  font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.22em;
+  color:#9A7F45;white-space:nowrap;
+}
 .searchbox{
   flex:1;display:flex;align-items:center;gap:10px;
-  background:var(--panel);border:1px solid var(--line);border-radius:7px;
-  padding:11px 15px;font-size:16px;
+  background:#FFFDF8;border:1px solid #E4DCC9;border-radius:4px;
+  padding:11px 15px;font-size:15px;
+  font-family:'Jost',sans-serif;color:#3E3A32;
 }
-.searchbox svg{flex:none;opacity:.55}
+.searchbox svg{flex:none;opacity:.45}
 #typed{white-space:nowrap;overflow:hidden}
-#caret{display:inline-block;width:2px;height:1.15em;background:var(--champagne);vertical-align:text-bottom;animation:blink 1s step-end infinite}
+#caret{display:inline-block;width:1.5px;height:1.15em;background:#9A7F45;vertical-align:text-bottom;animation:blink 1s step-end infinite}
 @keyframes blink{50%{opacity:0}}
-.results{padding:10px 20px 20px}
+.results{padding:8px 22px 20px}
 .result{
   display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;
-  padding:14px 8px;border-bottom:1px solid var(--line);
+  padding:14px 2px;border-bottom:1px solid #EDE6D6;
   opacity:0;transform:translateY(6px);
 }
 .result:last-child{border-bottom:none}
 .result.show{opacity:1;transform:none;transition:opacity .4s ease,transform .4s ease}
 .frame{
-  aspect-ratio:16/9;border-radius:5px;
+  aspect-ratio:16/9;border-radius:3px;
   position:relative;overflow:hidden;
+  border:1px solid #E4DCC9;
 }
 .frame::after{
   content:attr(data-tc);
   position:absolute;right:5px;bottom:5px;
-  font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;
-  color:var(--text);background:rgba(15,18,22,.75);
-  padding:2px 5px;border-radius:3px;
+  font-family:'Spline Sans Mono',monospace;font-size:10px;font-weight:500;
+  color:#FAF6EE;background:rgba(62,58,50,.72);
+  padding:2px 5px;border-radius:2px;
 }
-.f1{background:linear-gradient(130deg,#3d4a5c,#22303f 55%,#405368)}
-.f2{background:linear-gradient(130deg,#4a4436,#2c2820 55%,#5c5340)}
-.f3{background:linear-gradient(130deg,#37474a,#1f2b2d 55%,#44585c)}
+.f1{background:linear-gradient(130deg,#274B63,#0F2436 55%,#3A6B8A)}
+.f2{background:linear-gradient(130deg,#6B5B43,#3A3020 55%,#8A7550)}
+.f3{background:linear-gradient(130deg,#1F3B45,#0C1E26 55%,#2E5866)}
 .r-meta{min-width:0}
-.r-title{font-weight:600;font-size:15.5px}
-.r-line{margin-top:4px;font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.r-line mark{background:transparent;color:var(--champagne)}
-.r-tags{margin-top:7px;display:flex;gap:7px;flex-wrap:wrap}
+.r-title{font-family:'Marcellus',serif;font-weight:400;font-size:16.5px;color:#2E2A22}
+.r-line{margin-top:4px;font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#6E675A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-line mark{background:transparent;color:#9A7F45;font-weight:500}
+.r-tags{margin-top:7px;display:flex;gap:14px;flex-wrap:wrap}
 .tag{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  color:var(--muted);border:1px solid var(--line);
-  padding:2.5px 8px;border-radius:99px;
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#8A8272;
+  border:none;padding:0;border-radius:0;
 }
-.tag.spk{color:var(--champagne);border-color:color-mix(in srgb,var(--champagne) 40%,transparent)}
+.tag.spk{color:#9A7F45;border:none}
 
 /* ---------- Problem ---------- */
 .problem{padding:96px 0;border-bottom:1px solid var(--line)}
@@ -353,7 +359,7 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
   .hero{padding:60px 0 52px}
   .section,.problem{padding:68px 0}
   .result{grid-template-columns:92px 1fr;gap:12px}
-  .demo-bar .dot{display:none}
+  .demo-label{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   #caret{animation:none}
@@ -377,12 +383,12 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
     <p class="sub">VDO Bridge is a media intelligence platform. It ingests your video archive, indexes every frame and every word spoken, and gives you a <strong>private portal where you can find anything you've ever shot</strong> — by content, by speaker, by moment. Not by filename.</p>
     <div class="hero-ctas">
       <a class="btn-primary" href="#audit">Book the free Media Audit</a>
-      <a class="btn-quiet" href="https://youtu.be/8lyWTfuojPQ" target="_blank" rel="noopener">Watch the 79-second demo</a>
+      <a class="btn-quiet" href="https://bridge.thevdoaigency.com/corniche" target="_blank" rel="noopener">Try the live demo</a>
     </div>
 
     <div class="demo" aria-label="Example of a content search across a video library">
       <div class="demo-bar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="demo-label">CORNICHE — THE LIBRARY</span>
         <div class="searchbox">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
           <span id="typed"></span><span id="caret"></span>
@@ -390,27 +396,27 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
       </div>
       <div class="results" id="results">
         <div class="result">
-          <div class="frame f1" data-tc="00:04:12"></div>
+          <div class="frame f1" data-tc="00:00:27"></div>
           <div class="r-meta">
-            <div class="r-title">CEO interview — Singapore office</div>
-            <div class="r-line">"…our <mark>expansion into Southeast Asia</mark> wasn't a bet, it was a response to where our clients already were…"</div>
-            <div class="r-tags"><span class="tag spk">Speaker: M. Chen</span><span class="tag">Interview</span><span class="tag">2023 shoot</span></div>
+            <div class="r-title">Leila Navarro — Guest Experience interview, Monaco</div>
+            <div class="r-line">"…the water began to glow. <mark>Bioluminescence</mark>. 40 consultants swam in blue light, laughing like children…"</div>
+            <div class="r-tags"><span class="tag spk">L. Navarro</span><span class="tag">Interview · Monaco</span><span class="tag spk">94% match</span></div>
           </div>
         </div>
         <div class="result">
-          <div class="frame f2" data-tc="00:11:47"></div>
+          <div class="frame f2" data-tc="00:00:24"></div>
           <div class="r-meta">
-            <div class="r-title">Town hall — Q2 all-hands</div>
-            <div class="r-line">"…the <mark>Asia expansion</mark> timeline moved up a full quarter after the Jakarta pilot…"</div>
-            <div class="r-tags"><span class="tag spk">Speaker: D. Okafor</span><span class="tag">Event</span><span class="tag">Multicam</span></div>
+            <div class="r-title">Dana Kessler — client testimonial, New York</div>
+            <div class="r-line">"…one night the whole bay was glowing. <mark>Bioluminescence</mark>. My CFO was in the water first…"</div>
+            <div class="r-tags"><span class="tag spk">D. Kessler</span><span class="tag">Testimonial · Multicam</span><span class="tag spk">91% match</span></div>
           </div>
         </div>
         <div class="result">
-          <div class="frame f3" data-tc="00:00:31"></div>
+          <div class="frame f3" data-tc="00:00:12"></div>
           <div class="r-meta">
-            <div class="r-title">B-roll — Ho Chi Minh City street market</div>
-            <div class="r-line">Exterior, golden hour, handheld gimbal. Matched on scene content — no transcript, no keywords in the filename.</div>
-            <div class="r-tags"><span class="tag">B-roll</span><span class="tag">4K</span><span class="tag">Vertical crop safe</span></div>
+            <div class="r-title">B-roll — Hạ Long Bay at dusk, drone</div>
+            <div class="r-line">Dark water, limestone karsts, boat lights coming on. Matched on scene content — no transcript, no keywords in the filename.</div>
+            <div class="r-tags"><span class="tag">B-roll · Drone · 4K</span><span class="tag spk">58% match</span></div>
           </div>
         </div>
       </div>
@@ -483,13 +489,13 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
     <h2>Don't imagine it. Search one.</h2>
     <p class="lede">Corniche is a complete working library — a fictional brand, indexed for real, built to show what your archive becomes. The other two show the same index pointed at different worlds. The fastest way to see yours? The audit builds it from your own footage in a week.</p>
     <div class="demo-libs">
-      <a class="lib" href="https://youtu.be/8lyWTfuojPQ" target="_blank" rel="noopener">
+      <a class="lib" href="https://bridge.thevdoaigency.com/corniche" target="_blank" rel="noopener">
         <span class="lib-badge">Demo library</span>
         <h3>Corniche</h3>
         <p class="lib-vert">Luxury yacht charter</p>
         <div class="lib-query">→ "swimming in bioluminescence"</div>
         <p class="lib-result">2 moments found across 2 speakers — an experience two people described, that no filename ever mentioned.</p>
-        <span class="lib-cta">Watch the search →</span>
+        <span class="lib-cta">Search the library →</span>
       </a>
       <a class="lib" href="#audit">
         <span class="lib-badge">Vertical example</span>
@@ -631,7 +637,7 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
     <p>The audit costs you a shared link and a week of patience. Your footage in, a searchable library and three finished reels out.</p>
     <div class="hero-ctas">
       <a class="btn-primary" href="mailto:brandon@thevdoaigency.com?subject=Media%20Audit">Book the free Media Audit</a>
-      <a class="btn-quiet" href="https://youtu.be/8lyWTfuojPQ" target="_blank" rel="noopener">Watch the demo first</a>
+      <a class="btn-quiet" href="https://bridge.thevdoaigency.com/corniche" target="_blank" rel="noopener">Try the demo first</a>
     </div>
   </div>
 </section>
@@ -649,7 +655,7 @@ footer .wrap{display:flex;justify-content:space-between;width:100%;flex-wrap:wra
   var typed = document.getElementById('typed');
   var caret = document.getElementById('caret');
   var results = document.querySelectorAll('.result');
-  var query = 'everything the CEO said about the Asia expansion';
+  var query = 'swimming in bioluminescence';
 
   function reveal(){
     results.forEach(function(r,i){
